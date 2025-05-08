@@ -55,7 +55,33 @@
         .buttons a:hover {
             background-color: #8b16ac;
         }
+        .visitor-counter {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counterElement = document.createElement('div');
+            counterElement.className = 'visitor-counter';
+            counterElement.textContent = 'Visitantes: 0'; // Placeholder text
+
+            // Simulate visitor count (replace with real logic if needed)
+            let visitorCount = localStorage.getItem('visitorCount') || 0;
+            visitorCount++;
+            localStorage.setItem('visitorCount', visitorCount);
+            counterElement.textContent = `Visitantes: ${visitorCount}`;
+
+            document.body.appendChild(counterElement);
+        });
+    </script>
 </head>
 <body>
     <div class="container">
