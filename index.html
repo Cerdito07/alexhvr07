@@ -1,148 +1,143 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"> <!-- Idioma de la página -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cerdito ツ</title>
-    <link rel="icon" href="cerdito.jpg" type="image/x-icon">
+    <title>Cerdito ツ</title> <!-- Título de la pestaña -->
+    <link rel="icon" href="cerdito.jpg" type="image/x-icon"> <!-- Icono de la pestaña -->
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-image: url('cerdito.jpg'); /* Reemplaza con la URL de tu imagen */
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; /* Elimina el margen por defecto */
+            padding: 0; /* Elimina el padding por defecto */
+            font-family: Arial, sans-serif; /* Fuente de texto */
+            background-image: url('cerdito.jpg'); /* Imagen de fondo */
+            background-size: cover; /* La imagen cubre toda la pantalla */
+            background-position: center; /* Centrado la imagen de fondo */
+            height: 100vh; /* Altura de la ventana */
+            display: flex; /* Usa flexbox para centrar contenido */
+            justify-content: center; /* Centrado horizontalmente */
+            align-items: center; /* Centrado verticalmente */
         }
         .container {
-            background-color: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 6px 20px #d633ff;
-            color: rgb(255, 255, 255);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 400px;
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+            box-shadow: 0 6px 20px #d633ff; /* Sombra */
+            color: rgb(255, 255, 255); /* Color de texto */
+            padding: 20px; /* Espaciado interno */
+            border-radius: 15px; /* Bordes redondeados */
+            text-align: center; /* Centra el texto */
+            max-width: 400px; /* Ancho máximo */
         }
         h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            background-color: rgba(0, 0, 0, 0.486);
-            padding: 10px;
-            border-radius: 14px;
+            font-size: 24px; /* Tamaño de fuente */
+            margin-bottom: 10px; /* Espacio inferior */
+            background-color: rgba(0, 0, 0, 0.486); /* Fondo semitransparente */
+            padding: 10px; /* Espaciado interno */
+            border-radius: 14px; /* Bordes redondeados */
         }
         p {
-            font-size: 16px;
-            margin-bottom: 20px;
-            background-color: rgba(0, 0, 0, 0.486);
-            padding: 6px;
-            border-radius: 20px;
+            font-size: 16px; /* Tamaño de fuente */
+            margin-bottom: 20px; /* Espacio inferior */
+            background-color: rgba(0, 0, 0, 0.486); /* Fondo semitransparente */
+            padding: 6px; /* Espaciado interno */
+            border-radius: 20px; /* Bordes redondeados */
         }
         .buttons a {
-            display: inline-block;
-            margin: 5px;
-            padding: 10px 15px;
-            background-color: #d633ff;
-            box-shadow: 0 4px 8px #817b83;
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-            border-radius: 10px;
-            transition: background-color 0.5s;
+            display: inline-block; /* Muestra en línea como bloque */
+            margin: 5px; /* Espacio entre botones */
+            padding: 10px 15px; /* Espaciado interno */
+            background-color: #d633ff; /* Color de fondo */
+            box-shadow: 0 4px 8px #817b83; /* Sombra */
+            color: rgb(0, 0, 0); /* Color de texto */
+            text-decoration: none; /* Sin subrayado */
+            border-radius: 10px; /* Bordes redondeados */
+            transition: background-color 0.5s; /* Transición suave */
         }
         .buttons a:hover {
-            background-color: #8b16ac;
+            background-color: #8b16ac; /* Cambia el color de fondo */
         }
         .visitor-counter {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 14px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: fixed; /* Fijo en la pantalla */
+            bottom: 10px; /* A 10px del borde inferior */
+            left: 10px; /* A 10px del borde izquierdo */
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+            color: white; /* Color de texto */
+            padding: 10px; /* Espaciado interno */
+            border-radius: 10px; /* Bordes redondeados */
+            font-size: 14px; /* Tamaño de fuente */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra */
         }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const counterElement = document.createElement('div');
             counterElement.className = 'visitor-counter';
-            counterElement.textContent = 'Visitantes: 0'; // Placeholder text
+            counterElement.textContent = 'Visitantes: 0'; // Texto inicial
 
-            // Simulate visitor count (replace with real logic if needed)
             let visitorCount = localStorage.getItem('visitorCount') || 0;
-            visitorCount++;
-            localStorage.setItem('visitorCount', visitorCount);
-            counterElement.textContent = `Visitantes: ${visitorCount}`;
+            visitorCount++; // Incrementa el contador
+            localStorage.setItem('visitorCount', visitorCount); // Guarda el nuevo valor
+            counterElement.textContent = `Visitantes: ${visitorCount}`; // Muestra el número de visitantes
 
-            document.body.appendChild(counterElement);
+            document.body.appendChild(counterElement); // Agrega el contador al body
 
-            // Create the scare button
-            const scareButton = document.createElement('button');
-            scareButton.textContent = 'Ver nombre de visitantes';
-            scareButton.style.position = 'fixed';
-            scareButton.style.bottom = '50px';
-            scareButton.style.left = '10px';
-            scareButton.style.padding = '10px';
-            scareButton.style.backgroundColor = '#d633ff';
-            scareButton.style.color = '#000';
-            scareButton.style.border = 'none';
-            scareButton.style.borderRadius = '10px';
-            scareButton.style.cursor = 'pointer';
-            scareButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.5)';
-            scareButton.style.transition = 'background-color 0.5s';
+            const scareButton = document.createElement('button'); // Crea un botón
+            scareButton.textContent = 'Ver nombre de visitantes'; // Texto del botón
+            scareButton.style.position = 'fixed'; // Posición fija
+            scareButton.style.bottom = '50px'; // A 50px del borde inferior
+            scareButton.style.left = '10px'; // A 10px del borde izquierdo
+            scareButton.style.padding = '10px'; // Espaciado interno
+            scareButton.style.backgroundColor = '#d633ff'; // Color de fondo
+            scareButton.style.color = '#000'; // Color de texto
+            scareButton.style.border = 'none'; // Sin borde
+            scareButton.style.borderRadius = '10px'; // Bordes redondeados
+            scareButton.style.cursor = 'pointer'; // Cursor tipo mano
+            scareButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.5)'; // Sombra
+            scareButton.style.transition = 'background-color 0.5s'; // Transición suave
 
             scareButton.addEventListener('mouseover', () => {
-                scareButton.style.backgroundColor = '#8b16ac';
+                scareButton.style.backgroundColor = '#8b16ac'; // Cambia el color de fondo
             });
 
             scareButton.addEventListener('mouseout', () => {
-                scareButton.style.backgroundColor = '#d633ff';
+                scareButton.style.backgroundColor = '#d633ff'; // Restaura el color de fondo
             });
 
             scareButton.addEventListener('click', () => {
-                const scareVideo = document.createElement('video');
-                scareVideo.src = 'video.mp4';// Example video URL
-                scareVideo.autoplay = true;
-                scareVideo.controls = false;
-                scareVideo.style.position = 'fixed';
-                scareVideo.style.top = '50%';
-                scareVideo.style.left = '50%';
-                scareVideo.style.transform = 'translate(-50%, -50%)';
-                scareVideo.style.zIndex = '1000';
-                scareVideo.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.8)';
-                scareVideo.style.borderRadius = '10px';
+                const scareVideo = document.createElement('video'); // Crea un elemento de video
+                scareVideo.src = 'video.mp4'; // Ruta del video
+                scareVideo.autoplay = true; // Reproduce automáticamente
+                scareVideo.controls = false; // Sin controles
+                scareVideo.style.position = 'fixed'; // Posición fija
+                scareVideo.style.top = '50%'; // Centrado vertical
+                scareVideo.style.left = '50%'; // Centrado horizontal
+                scareVideo.style.transform = 'translate(-50%, -50%)'; // Centra el video
+                scareVideo.style.zIndex = '1000'; // Encima de otros elementos
+                scareVideo.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.8)'; // Sombra
+                scareVideo.style.borderRadius = '10px'; // Bordes redondeados
 
                 const closeButton = document.createElement('button');
-                closeButton.textContent = 'Cerrar';
-                closeButton.style.position = 'absolute';
-                closeButton.style.top = '10px';
-                closeButton.style.right = '10px';
-                closeButton.style.padding = '5px 10px';
-                closeButton.style.backgroundColor = '#d633ff';
-                closeButton.style.color = '#000';
-                closeButton.style.border = 'none';
-                scareVideo.style.width = '80%';
-                scareVideo.style.height = '80%';
-                closeButton.style.borderRadius = '5px';
-                closeButton.style.cursor = 'pointer';
+                closeButton.textContent = 'Cerrar'; // Texto del botón
+                closeButton.style.position = 'absolute'; // Posición absoluta respecto al video
+                closeButton.style.top = '10px'; // A 10px del borde superior
+                closeButton.style.right = '10px'; // A 10px del borde derecho
+                closeButton.style.padding = '5px 10px'; // Espaciado interno
+                closeButton.style.backgroundColor = '#d633ff'; // Color de fondo
+                closeButton.style.color = '#000'; // Color de texto
+                scareVideo.style.width = '80%'; // Ancho del video
+                scareVideo.style.height = '80%'; // Alto del video
+                closeButton.style.borderRadius = '5px'; // Bordes redondeados
+                closeButton.style.cursor = 'pointer'; // Cursor tipo mano
 
                 closeButton.addEventListener('click', () => {
                     document.body.removeChild(scareVideo);
                     document.body.removeChild(closeButton);
 
-                    // Re-enable the button after the video is closed
                     scareButton.disabled = false;
                     scareButton.style.opacity = '1';
                     scareButton.style.cursor = 'pointer';
                 });
 
-                // Disable the button while the video is open
-                scareButton.disabled = true;
+                scareButton.disabled = true; // Desactiva el botón mientras el video está abierto
                 scareButton.style.opacity = '0.5';
                 scareButton.style.cursor = 'not-allowed';
 
@@ -159,12 +154,12 @@
         <h1>Bienvenid@ a la Web de Cerdito</h1>
         <p>Redes Sociales</p>
         <div class="buttons">
-            <a href="https://www.instagram.com/alexhvr07/" target="_blank">Instagram</a>
-            <a href="https://www.tiktok.com/@alexhvr07" target="_blank">TikTok</a>
-            <a href="https://www.youtube.com/@alexhvr07" target="_blank">Youtube</a>
-            <a href="https://www.twitch.tv/alexhvr07" target="_blank">Twitch</a>
-            <a href="https://x.com/alexhvr2007" target="_blank">X</a>
-            <p>Gracias por visitar mi web 😁</p>
+            <a href="https://www.instagram.com/alexhvr07/" target="_blank">Instagram</a> <!-- Enlace a Instagram -->
+            <a href="https://www.tiktok.com/@alexhvr07" target="_blank">TikTok</a> <!-- Enlace a TikTok -->
+            <a href="https://www.youtube.com/@alexhvr07" target="_blank">Youtube</a> <!-- Enlace a Youtube -->
+            <a href="https://www.twitch.tv/alexhvr07" target="_blank">Twitch</a> <!-- Enlace a Twitch -->
+            <a href="https://x.com/alexhvr2007" target="_blank">X</a> <!-- Enlace a X (Twitter) -->
+            <p>Gracias por visitar mi web 😁</p> <!-- Mensaje de agradecimiento -->
         </div>
     </div>
 </body>
