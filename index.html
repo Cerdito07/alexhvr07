@@ -162,6 +162,68 @@
             <a href="https://x.com/alexhvr2007" target="_blank">X</a> <!-- Enlace a X (Twitter) -->
             <p>Gracias por visitar mi web 😁</p> <!-- Mensaje de agradecimiento -->
         </div>
+        <div id="fortune-container" style="margin-top:20px;"></div>
+            <button id="fortune-btn" style="padding:10px 15px; background:#d633ff; color:#000; border:none; border-radius:10px; cursor:pointer; box-shadow:0 4px 8px #817b83; transition:background-color 0.5s;">Descubre tu fortuna del día 🐷</button>
+            <p id="fortune-result" style="margin-top:15px; font-size:16px; min-height:24px;"></p>
+        </div>
+        <script>
+            const fortunes = [
+            "Hoy es un gran día para ahorrar y sonreír.",
+            "¡Una sorpresa agradable te espera pronto!",
+            "Confía en tus ideas, te llevarán lejos.",
+            "Un amigo te dará una buena noticia.",
+            "La suerte está de tu lado, ¡aprovéchala!",
+            "Haz algo nuevo hoy, te traerá alegría.",
+            "Recuerda: cada pequeño logro cuenta.",
+            "Tu esfuerzo será recompensado muy pronto.",
+            "Hoy es el día perfecto para empezar algo grande.",
+            "¡No olvides disfrutar de los pequeños momentos!"
+            ];
+            document.getElementById('fortune-btn').onclick = function() {
+            const idx = Math.floor(Math.random() * fortunes.length);
+            document.getElementById('fortune-result').textContent = fortunes[idx];
+            };
+        </script>
+    </div>
+    <!-- Muro de Mensajes de Amigos -->
+    <div id="friend-wall" style="margin-top:40px; background:rgba(255,255,255,0.07); padding:18px; border-radius:14px; box-shadow:0 2px 8px #d633ff;">
+        <h2 style="color:#d633ff; margin-bottom:10px;">Deja un mensaje para tus amigos 📝</h2>
+        <form id="wall-form" style="display:flex; flex-direction:column; gap:10px;">
+            <input type="text" id="friend-name" placeholder="Tu nombre" maxlength="20" style="padding:8px; border-radius:7px; border:none;">
+            <textarea id="friend-message" placeholder="Escribe tu mensaje..." maxlength="120" rows="2" style="padding:8px; border-radius:7px; border:none; resize:none;"></textarea>
+            <button type="submit" style="background:#d633ff; color:#000; border:none; border-radius:7px; padding:8px; cursor:pointer; font-weight:bold;">Publicar</button>
+        </form>
+        <div id="wall-messages" style="margin-top:18px; text-align:left;"></div>
+    </div>
+    <script>
+        // Cargar mensajes previos del muro
+        function loadWallMessages() {
+            const wall = document.getElementById('wall-messages');
+            wall.innerHTML = '';
+            const messages = JSON.parse(localStorage.getItem('friendWall') || '[]');
+            messages.slice(-8).reverse().forEach(msg => {
+                const div = document.createElement('div');
+                div.style.background = 'rgba(214,51,255,0.13)';
+                div.style.marginBottom = '8px';
+                div.style.padding = '7px 10px';
+                div.style.borderRadius = '8px';
+                div.innerHTML = `<strong style="color:#d633ff;">${msg.name}:</strong> <span style="color:#fff;">${msg.text}</span>`;
+                wall.appendChild(div);
+            });
+        }
+        document.getElementById('wall-form').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('friend-name').value.trim().slice(0,20) || 'Anónimo';
+            const text = document.getElementById('friend-message').value.trim().slice(0,120);
+            if (!text) return;
+            const messages = JSON.parse(localStorage.getItem('friendWall') || '[]');
+            messages.push({ name, text });
+            localStorage.setItem('friendWall', JSON.stringify(messages));
+            document.getElementById('friend-message').value = '';
+            loadWallMessages();
+        };
+        loadWallMessages();
+    </script>
     </div>
 </body>
 </html>
