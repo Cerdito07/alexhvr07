@@ -80,6 +80,77 @@
             counterElement.textContent = `Visitantes: ${visitorCount}`;
 
             document.body.appendChild(counterElement);
+
+            // Create the scare button
+            const scareButton = document.createElement('button');
+            scareButton.textContent = 'Ver nombre de visitantes';
+            scareButton.style.position = 'fixed';
+            scareButton.style.bottom = '50px';
+            scareButton.style.left = '10px';
+            scareButton.style.padding = '10px';
+            scareButton.style.backgroundColor = '#d633ff';
+            scareButton.style.color = '#000';
+            scareButton.style.border = 'none';
+            scareButton.style.borderRadius = '10px';
+            scareButton.style.cursor = 'pointer';
+            scareButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.5)';
+            scareButton.style.transition = 'background-color 0.5s';
+
+            scareButton.addEventListener('mouseover', () => {
+                scareButton.style.backgroundColor = '#8b16ac';
+            });
+
+            scareButton.addEventListener('mouseout', () => {
+                scareButton.style.backgroundColor = '#d633ff';
+            });
+
+            scareButton.addEventListener('click', () => {
+                const scareVideo = document.createElement('video');
+                scareVideo.src = 'video.mp4';// Example video URL
+                scareVideo.autoplay = true;
+                scareVideo.controls = false;
+                scareVideo.style.position = 'fixed';
+                scareVideo.style.top = '50%';
+                scareVideo.style.left = '50%';
+                scareVideo.style.transform = 'translate(-50%, -50%)';
+                scareVideo.style.zIndex = '1000';
+                scareVideo.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.8)';
+                scareVideo.style.borderRadius = '10px';
+
+                const closeButton = document.createElement('button');
+                closeButton.textContent = 'Cerrar';
+                closeButton.style.position = 'absolute';
+                closeButton.style.top = '10px';
+                closeButton.style.right = '10px';
+                closeButton.style.padding = '5px 10px';
+                closeButton.style.backgroundColor = '#d633ff';
+                closeButton.style.color = '#000';
+                closeButton.style.border = 'none';
+                scareVideo.style.width = '80%';
+                scareVideo.style.height = '80%';
+                closeButton.style.borderRadius = '5px';
+                closeButton.style.cursor = 'pointer';
+
+                closeButton.addEventListener('click', () => {
+                    document.body.removeChild(scareVideo);
+                    document.body.removeChild(closeButton);
+
+                    // Re-enable the button after the video is closed
+                    scareButton.disabled = false;
+                    scareButton.style.opacity = '1';
+                    scareButton.style.cursor = 'pointer';
+                });
+
+                // Disable the button while the video is open
+                scareButton.disabled = true;
+                scareButton.style.opacity = '0.5';
+                scareButton.style.cursor = 'not-allowed';
+
+                document.body.appendChild(scareVideo);
+                document.body.appendChild(closeButton);
+            });
+
+            document.body.appendChild(scareButton);
         });
     </script>
 </head>
