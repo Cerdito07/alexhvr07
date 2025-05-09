@@ -116,6 +116,7 @@
                 scareVideo.style.borderRadius = '10px'; // Bordes redondeados
 
                 const closeButton = document.createElement('button');
+                closeButton.style.fontSize = '18px'; // Hace el texto más grande
                 closeButton.textContent = 'Cerrar'; // Texto del botón
                 closeButton.style.position = 'absolute'; // Posición absoluta respecto al video
                 closeButton.style.top = '10px'; // A 10px del borde superior
@@ -129,8 +130,8 @@
                 closeButton.style.cursor = 'pointer'; // Cursor tipo mano
 
                 closeButton.addEventListener('click', () => {
-                    document.body.removeChild(scareVideo);
-                    document.body.removeChild(closeButton);
+                    document.body.removeChild(scareVideo); // Elimina el video
+                    document.body.removeChild(closeButton); // Elimina el botón
 
                     scareButton.disabled = false;
                     scareButton.style.opacity = '1';
