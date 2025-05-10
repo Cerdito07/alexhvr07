@@ -1,207 +1,114 @@
 <!DOCTYPE html>
-<html lang="es"> <!-- Idioma de la página -->
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cerdito ツ</title> <!-- Título de la pestaña -->
-    <link rel="icon" href="cerdito.jpg" type="image/x-icon"> <!-- Icono de la pestaña -->
+    <title>Cerdito ツ</title>
+    <link rel="icon" href="cerdito.jpg" type="image/x-icon">
     <style>
         body {
-            margin: 0; /* Elimina el margen por defecto */
-            padding: 0; /* Elimina el padding por defecto */
-            font-family: Arial, sans-serif; /* Fuente de texto */
-            background-image: url('cerdito.jpg'); /* Imagen de fondo */
-            background-size: cover; /* La imagen cubre toda la pantalla */
-            background-position: center; /* Centrado la imagen de fondo */
-            height: 100vh; /* Altura de la ventana */
-            display: flex; /* Usa flexbox para centrar contenido */
-            justify-content: center; /* Centrado horizontalmente */
-            align-items: center; /* Centrado verticalmente */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('cerdito.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .container {
-            background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
-            box-shadow: 0 6px 20px #d633ff; /* Sombra */
-            color: rgb(255, 255, 255); /* Color de texto */
-            padding: 20px; /* Espaciado interno */
-            border-radius: 15px; /* Bordes redondeados */
-            text-align: center; /* Centra el texto */
-            max-width: 400px; /* Ancho máximo */
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 32px rgba(44,0,66,0.18);
+            color: #fff;
+            padding: 32px 28px 28px 28px;
+            border-radius: 22px;
+            text-align: center;
+            max-width: 400px;
+            border: 2px solid #ffb3e6;
         }
         h1 {
-            font-size: 24px; /* Tamaño de fuente */
-            margin-bottom: 10px; /* Espacio inferior */
-            background-color: rgba(0, 0, 0, 0.486); /* Fondo semitransparente */
-            padding: 10px; /* Espaciado interno */
-            border-radius: 14px; /* Bordes redondeados */
+            font-size: 28px;
+            margin-bottom: 14px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            padding: 12px 0;
+            border-radius: 16px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px #ffb3e6;
+            border: 2px solid #ffb3e6;
         }
         p {
-            font-size: 16px; /* Tamaño de fuente */
-            margin-bottom: 20px; /* Espacio inferior */
-            background-color: rgba(0, 0, 0, 0.486); /* Fondo semitransparente */
-            padding: 6px; /* Espaciado interno */
-            border-radius: 20px; /* Bordes redondeados */
+            font-size: 17px;
+            margin-bottom: 18px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            padding: 8px 0;
+            border-radius: 14px;
+            border: 2px solid #ffb3e6;
+            box-shadow: 0 2px 8px #ffb3e6;
+        }
+        .buttons {
+            margin-bottom: 18px;
         }
         .buttons a {
-            display: inline-block; /* Muestra en línea como bloque */
-            margin: 5px; /* Espacio entre botones */
-            padding: 10px 15px; /* Espaciado interno */
-            background-color: #d633ff; /* Color de fondo */
-            box-shadow: 0 4px 8px #817b83; /* Sombra */
-            color: rgb(0, 0, 0); /* Color de texto */
-            text-decoration: none; /* Sin subrayado */
-            border-radius: 10px; /* Bordes redondeados */
-            transition: background-color 0.5s; /* Transición suave */
+            display: inline-block;
+            margin: 6px 4px;
+            padding: 10px 18px;
+            background: linear-gradient(90deg, #fff 60%, #d633ff 100%);
+            color: #2d0036;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #ffb3e6;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
         }
         .buttons a:hover {
-            background-color: #8b16ac; /* Cambia el color de fondo */
+            background: linear-gradient(90deg, #d633ff 60%, #fff 100%);
+            color: #fff;
+            transform: translateY(-2px) scale(1.05);
         }
-
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const scareButton = document.createElement('button'); // Crea un botón
-            scareButton.textContent = 'Haz Click'; // Texto del botón
-            scareButton.style.position = 'fixed'; // Posición fija
-            scareButton.style.bottom = '0'; // Pegado al borde inferior
-            scareButton.style.left = '0'; // Pegado al borde izquierdo
-            scareButton.style.margin = '16px'; // Margen opcional para separar del borde
-            scareButton.style.padding = '8px'; // Espaciado interno
-            scareButton.style.backgroundColor = '#d633ff'; // Color de fondo
-            scareButton.style.color = '#000'; // Color de texto
-            scareButton.style.border = 'none'; // Sin borde
-            scareButton.style.borderRadius = '10px'; // Bordes redondeados
-            scareButton.style.cursor = 'pointer'; // Cursor tipo mano
-            scareButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.5)'; // Sombra
-            scareButton.style.transition = 'background-color 0.5s'; // Transición suave
-
-            scareButton.addEventListener('mouseover', () => {
-                scareButton.style.backgroundColor = '#8b16ac'; // Cambia el color de fondo
-            });
-
-            scareButton.addEventListener('mouseout', () => {
-                scareButton.style.backgroundColor = '#d633ff'; // Restaura el color de fondo
-            });
-
-            scareButton.addEventListener('click', () => {
-                const scareVideo = document.createElement('video'); // Crea un elemento de video
-                scareVideo.src = 'video.mp4'; // Ruta del video
-                scareVideo.autoplay = true; // Reproduce automáticamente
-                scareVideo.controls = false; // Sin controles
-                scareVideo.style.position = 'fixed'; // Posición fija
-                scareVideo.style.top = '50%'; // Centrado vertical
-                scareVideo.style.left = '50%'; // Centrado horizontal
-                scareVideo.style.transform = 'translate(-50%, -50%)'; // Centra el video
-                scareVideo.style.zIndex = '1000'; // Encima de otros elementos
-                scareVideo.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.8)'; // Sombra
-                scareVideo.style.borderRadius = '10px'; // Bordes redondeados
-                scareVideo.style.width = '80%'; // Ancho del video
-                scareVideo.style.height = '80%'; // Alto del video
-
-
-                const closeButton = document.createElement('button');
-                closeButton.style.fontSize = '15px'; // Hace el texto más grande
-                closeButton.textContent = 'Cerrar Video'; // Texto del botón
-                closeButton.style.position = 'absolute'; // Posición absoluta respecto al video
-                closeButton.style.top = '10px'; // A 10px del borde superior
-                closeButton.style.right = '10px'; // A 10px del borde derecho
-                closeButton.style.padding = '5px 10px'; // Espaciado interno
-                closeButton.style.backgroundColor = '#d633ff'; // Color de fondo
-                closeButton.style.color = '#000'; // Color de texto
-                closeButton.style.border = 'none'; // Sin borde
-                closeButton.style.borderRadius = '10px'; // Bordes redondeados
-                closeButton.style.cursor = 'pointer'; // Cursor tipo mano
-                closeButton.style.transition = 'background-color 0.5s'; // Transición suave
-
-                closeButton.addEventListener('mouseover', () => {
-                    closeButton.style.backgroundColor = '#8b16ac'; // Oscurece al pasar el cursor
-                });
-                closeButton.addEventListener('mouseout', () => {
-                    closeButton.style.backgroundColor = '#d633ff'; // Restaura el color
-                });
-
-                closeButton.addEventListener('click', () => {
-                    document.body.removeChild(scareVideo); // Elimina el video
-                    document.body.removeChild(closeButton); // Elimina el botón
-
-                    scareButton.disabled = false;
-                    scareButton.style.opacity = '1';
-                    scareButton.style.cursor = 'pointer';
-                });
-
-                scareButton.disabled = true; // Desactiva el botón mientras el video está abierto
-                scareButton.style.opacity = '0.5';
-                scareButton.style.cursor = 'not-allowed';
-
-                document.body.appendChild(scareVideo);
-                document.body.appendChild(closeButton);
-            });
-
-            document.body.appendChild(scareButton);
-        });
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h1>Bienvenid@ a la Web de Cerdito</h1>
-        <p>Redes Sociales</p>
-        <div class="buttons">
-            <a href="https://www.instagram.com/alexhvr07/" target="_blank">Instagram</a> <!-- Enlace a Instagram -->
-            <a href="https://www.tiktok.com/@alexhvr07" target="_blank">TikTok</a> <!-- Enlace a TikTok -->
-            <a href="https://www.youtube.com/@alexhvr07" target="_blank">Youtube</a> <!-- Enlace a Youtube -->
-            <a href="https://www.twitch.tv/alexhvr07" target="_blank">Twitch</a> <!-- Enlace a Twitch -->
-            <a href="https://x.com/alexhvr2007" target="_blank">X</a> <!-- Enlace a X (Twitter) -->
-            <p>Gracias por visitar mi web 😁</p> <!-- Mensaje de agradecimiento -->
-        </div>
-        <div id="fortune-container" style="margin-top:20px;"></div>
-            <button id="fortune-btn" class="fortune-btn">Descubre tu fortuna del día 🐷</button>
-            <style>
-                .fortune-btn {
-                    padding: 10px 15px;
-                    background-color: #d633ff;
-                    color: #000;
-                    border: none;
-                    border-radius: 10px;
-                    cursor: pointer;
-                    box-shadow: 0 4px 8px #817b83;
-                    transition: background-color 0.5s;
-                }
-                .fortune-btn:hover {
-                    background-color: #8b16ac;
-                }
-            </style>
-            <p id="fortune-result" style="margin-top:15px; font-size:16px; min-height:24px;"></p>
-        </div>
-        <script>
-            const fortunes = [
-            "Hoy es un gran día para ahorrar y sonreír.",
-            "¡Una sorpresa agradable te espera pronto!",
-            "Confía en tus ideas, te llevarán lejos.",
-            "Un amigo te dará una buena noticia.",
-            "La suerte está de tu lado, ¡aprovéchala!",
-            "Haz algo nuevo hoy, te traerá alegría.",
-            "Recuerda: cada pequeño logro cuenta.",
-            "Tu esfuerzo será recompensado muy pronto.",
-            "Hoy es el día perfecto para empezar algo grande.",
-            "¡No olvides disfrutar de los pequeños momentos!"
-            ];
-            document.getElementById('fortune-btn').onclick = function() {
-            const idx = Math.floor(Math.random() * fortunes.length);
-            document.getElementById('fortune-result').textContent = fortunes[idx];
-            };
-        </script>
-    </div>
-    <!-- Efecto de "Piggy Rain" único: lluvia de cerditos animados con interacción -->
-    <style>
+        .fortune-btn {
+            padding: 12px 20px;
+            background: linear-gradient(90deg, #fff 60%, #d633ff 100%);
+            color: #2d0036;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #ffb3e6;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+        }
+        .fortune-btn:hover {
+            background: linear-gradient(90deg, #d633ff 60%, #fff 100%);
+            color: #fff;
+            transform: translateY(-2px) scale(1.05);
+        }
+        #fortune-result {
+            margin-top: 18px;
+            font-size: 17px;
+            min-height: 24px;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 8px 0;
+            border: 2px solid #ffb3e6;
+            box-shadow: 0 2px 8px #ffb3e6;
+        }
+        /* Piggy Rain Styles */
         .piggy {
             position: fixed;
             top: -60px;
             font-size: 40px;
             pointer-events: auto;
             user-select: none;
-            z-index: 999;
+            z-index: 1003 !important;
             animation: fallPiggy 4s linear forwards;
             transition: transform 0.2s;
+            filter: drop-shadow(0 2px 6px #d633ff88);
         }
         @keyframes fallPiggy {
             to {
@@ -215,56 +122,105 @@
             top: 60px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.2);
             color: #ffffff;
-            border-radius: 10px;
-            padding: 8px 16px;
+            border-radius: 12px;
+            padding: 10px 20px;
             font-size: 18px;
             font-weight: bold;
             z-index: 1002;
-            box-shadow: 0 4px 8px #817b83;
+            box-shadow: 0 2px 8px #ffb3e6;
             user-select: none;
+            border: 2px solid #ffb3e6;
         }
         .piggy-label {
             position: fixed;
-            top: 13px; /* Agrega margen superior */
+            top: 13px;
             right: 16px;
-            background: rgba(0,0,0,0.6);
-            color: #fff;
-            padding: 12px 16px; /* Más padding para separar del botón */
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 12px;
             font-size: 17px;
             font-weight: bold;
             z-index: 1001;
-            box-shadow: 0 4px 8px #817b83;
+            box-shadow: 0 2px 8px #ffb3e6;
             user-select: none;
             pointer-events: none;
+            border: 2px solid #ffb3e6;
+        }
+        /* Floating Buttons */
+        .floating-btn {
+            position: fixed;
+            background: linear-gradient(90deg, #fff 60%, #d633ff 100%);
+            color: #2d0036;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            cursor: pointer;
+           box-shadow: 0 2px 8px #ffb3e6;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+            z-index: 1001;
+        }
+        .floating-btn:hover {
+            background: linear-gradient(90deg, #d633ff 60%, #fff 100%);
+            color: #ffb3e6;
+            transform: translateY(-2px) scale(1.05);
         }
     </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenid@ a la Web de Cerdito</h1>
+        <p>Redes Sociales</p>
+        <div class="buttons">
+            <a href="https://www.instagram.com/alexhvr07/" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@alexhvr07" target="_blank">TikTok</a>
+            <a href="https://www.youtube.com/@alexhvr07" target="_blank">Youtube</a>
+            <a href="https://www.twitch.tv/alexhvr07" target="_blank">Twitch</a>
+            <a href="https://x.com/alexhvr2007" target="_blank">X</a>
+        </div>
+        <button id="fortune-btn" class="fortune-btn">Descubre tu fortuna del día 🐷</button>
+        <p id="fortune-result"></p>
+    </div>
     <script>
-        // Contador global
-        let piggyCount = 0;
+        // Fortuna
+        const fortunes = [
+            "Hoy es un gran día para ahorrar y sonreír.",
+            "¡Una sorpresa agradable te espera pronto!",
+            "Confía en tus ideas, te llevarán lejos.",
+            "Un amigo te dará una buena noticia.",
+            "La suerte está de tu lado, ¡aprovéchala!",
+            "Haz algo nuevo hoy, te traerá alegría.",
+            "Recuerda: cada pequeño logro cuenta.",
+            "Tu esfuerzo será recompensado muy pronto.",
+            "Hoy es el día perfecto para empezar algo grande.",
+            "¡No olvides disfrutar de los pequeños momentos!"
+        ];
+        document.getElementById('fortune-btn').onclick = function() {
+            const idx = Math.floor(Math.random() * fortunes.length);
+            document.getElementById('fortune-result').textContent = fortunes[idx];
+        };
 
-        // Muestra el contador en pantalla
+        // Piggy Rain
+        let piggyCount = 0;
         const counterDiv = document.createElement('div');
         counterDiv.className = 'piggy-counter';
         counterDiv.textContent = `Cerditos atrapados: ${piggyCount}`;
         document.body.appendChild(counterDiv);
 
-        // Texto arriba del botón
         const piggyLabel = document.createElement('div');
         piggyLabel.className = 'piggy-label';
         piggyLabel.textContent = 'Juega a la lluvia de cerditos';
         document.body.appendChild(piggyLabel);
 
-        // Actualiza el contador
         function updateCounter() {
             counterDiv.textContent = `Cerditos atrapados: ${piggyCount}`;
         }
-
-        // Genera lluvia de cerditos animados y permite "atraparlos"
         function piggyRain() {
-            counterDiv.style.display = 'block'; // Mostrar el contador al activar la lluvia
+            counterDiv.style.display = 'block';
             for (let i = 0; i < 7; i++) {
                 setTimeout(() => {
                     const piggy = document.createElement('span');
@@ -283,87 +239,68 @@
                 }, i * 400);
             }
         }
-        // Botón para activar la lluvia de cerditos
+        // Botón Lluvia de Cerditos
         const piggyBtn = document.createElement('button');
         piggyBtn.textContent = 'Lluvia de cerditos 🐷';
-        piggyBtn.style.position = 'fixed';
-        piggyBtn.style.top = '68px'; // Más margen superior
+        piggyBtn.className = 'floating-btn';
+        piggyBtn.style.top = '68px';
         piggyBtn.style.right = '65px';
-        piggyBtn.style.background = '#d633ff';
-        piggyBtn.style.color = '#000';
-        piggyBtn.style.border = 'none';
-        piggyBtn.style.borderRadius = '10px';
-        piggyBtn.style.padding = '10px 15px';
-        piggyBtn.style.cursor = 'pointer';
-        piggyBtn.style.boxShadow = '0 4px 8px #817b83';
-        piggyBtn.style.zIndex = '1001';
-        piggyBtn.onmouseover = () => piggyBtn.style.background = '#8b16ac';
-        piggyBtn.onmouseout = () => piggyBtn.style.background = '#d633ff';
-
-        // Oculta los botones de la lluvia de cerditos al hacer click en "Haz Click"
-        document.addEventListener('DOMContentLoaded', () => {
-            const scareButton = Array.from(document.querySelectorAll('button'))
-            .find(btn => btn.textContent === 'Haz Click');
-            if (scareButton) {
-            scareButton.addEventListener('click', () => {
-                piggyBtn.style.display = 'none';
-                piggyLabel.style.display = 'none';
-            });
-            }
-        });
         piggyBtn.onclick = piggyRain;
         document.body.appendChild(piggyBtn);
 
+        // Botón Haz Click (Scare)
+        const scareButton = document.createElement('button');
+        scareButton.textContent = 'Haz Click';
+        scareButton.className = 'floating-btn';
+        scareButton.style.bottom = '24px';
+        scareButton.style.left = '24px';
+        document.body.appendChild(scareButton);
 
-        // Oculta el contador y la etiqueta de cerditos atrapados al hacer click en "Haz Click"
-        document.addEventListener('DOMContentLoaded', () => {
-            const scareButton = Array.from(document.querySelectorAll('button'))
-            .find(btn => btn.textContent === 'Haz Click');
-            if (scareButton) {
-            scareButton.addEventListener('click', () => {
-                counterDiv.style.display = 'none';
-                piggyLabel.style.display = 'none';
-            });
-            }
-        });
+        scareButton.addEventListener('click', () => {
+            const scareVideo = document.createElement('video');
+            scareVideo.src = 'video.mp4';
+            scareVideo.autoplay = true;
+            scareVideo.controls = false;
+            scareVideo.style.position = 'fixed';
+            scareVideo.style.top = '50%';
+            scareVideo.style.left = '50%';
+            scareVideo.style.transform = 'translate(-50%, -50%)';
+            scareVideo.style.zIndex = '1000';
+            scareVideo.style.boxShadow = '0 8px 32px #ffb3e6';
+            scareVideo.style.borderRadius = '18px';
+            scareVideo.style.width = '80%';
+            scareVideo.style.height = '80%';
 
-        // Muestra el contador y la etiqueta de cerditos atrapados después de cerrar el video
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.addEventListener('click', function(e) {
-            if (e.target && e.target.textContent === 'Cerrar Video') {
-                counterDiv.style.display = 'block';
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'Cerrar Video';
+            closeButton.className = 'floating-btn';
+            closeButton.style.position = 'absolute';
+            closeButton.style.top = '18px';
+            closeButton.style.right = '28px';
+            closeButton.style.zIndex = '1001';
+
+            closeButton.addEventListener('click', () => {
+                document.body.removeChild(scareVideo);
+                document.body.removeChild(closeButton);
+                scareButton.disabled = false;
+                scareButton.style.opacity = '1';
+                scareButton.style.cursor = 'pointer';
+                // Mostrar piggy rain UI
+                piggyBtn.style.display = 'block';
                 piggyLabel.style.display = 'block';
-            }
+                counterDiv.style.display = 'block';
             });
+
+            scareButton.disabled = true;
+            scareButton.style.opacity = '0.5';
+            scareButton.style.cursor = 'not-allowed';
+            piggyBtn.style.display = 'none';
+            piggyLabel.style.display = 'none';
+            counterDiv.style.display = 'none';
+
+            document.body.appendChild(scareVideo);
+            document.body.appendChild(closeButton);
         });
-        // Mostrar los botones de la lluvia de cerditos después de cerrar el video
-        document.addEventListener('DOMContentLoaded', () => {
-            const scareButton = Array.from(document.querySelectorAll('button'))
-                .find(btn => btn.textContent === 'Haz Click');
-            const piggyBtn = Array.from(document.querySelectorAll('button'))
-                .find(btn => btn.textContent.includes('Lluvia de cerditos'));
-            const piggyLabel = document.querySelector('.piggy-label');
-
-            // Escucha cuando se crea el botón "Cerrar Video"
-            document.body.addEventListener('click', function(e) {
-                if (e.target && e.target.textContent === 'Cerrar Video') {
-                    // Mostrar los botones de la lluvia de cerditos nuevamente
-                    if (piggyBtn) piggyBtn.style.display = 'block';
-                    if (piggyLabel) piggyLabel.style.display = 'block';
-                }
-            });
-
-            // Asegura que los cerditos caigan por delante de los botones y etiquetas
-            // Ajusta el z-index de los cerditos para que sea mayor que los botones/etiquetas
-            const style = document.createElement('style');
-            style.textContent = `
-                .piggy {
-                    z-index: 1003 !important;
-                }
-            `;
-            document.head.appendChild(style);
-            });
-      
     </script>
 </body>
 </html>
