@@ -204,8 +204,12 @@
             document.getElementById('fortune-result').textContent = fortunes[idx];
         };
 
+        // Sonido de cerdito
+        const piggySound = new Audio('piggy.mp3'); // Asegúrate de tener piggy.mp3 en tu carpeta
+
         // Piggy Rain
         let piggyCount = 0;
+        let confettiShown = false;
         const counterDiv = document.createElement('div');
         counterDiv.className = 'piggy-counter';
         counterDiv.textContent = `Cerditos atrapados: ${piggyCount}`;
@@ -216,8 +220,38 @@
         piggyLabel.textContent = 'Juega a la lluvia de cerditos';
         document.body.appendChild(piggyLabel);
 
+        function showConfetti() {
+            // Confetti curtain effect
+            const columns = 24;
+            for (let col = 0; col < columns; col++) {
+                setTimeout(() => {
+                    for (let i = 0; i < 5; i++) {
+                        const conf = document.createElement('span');
+                        conf.textContent = ['🎉','✨','🎊','💖','🥳'][Math.floor(Math.random()*5)];
+                        conf.style.position = 'fixed';
+                        conf.style.left = `calc(${(col + Math.random()) * (100 / columns)}vw)`;
+                        conf.style.top = (-40 - Math.random()*40) + 'px';
+                        conf.style.fontSize = (24 + Math.random() * 24) + 'px';
+                        conf.style.zIndex = 2000;
+                        conf.style.pointerEvents = 'none';
+                        conf.style.transition = 'top 2.2s linear, opacity 2.2s linear';
+                        document.body.appendChild(conf);
+                        setTimeout(() => {
+                            conf.style.top = (60 + Math.random()*30) + 'vh';
+                            conf.style.opacity = 0;
+                        }, 10);
+                        setTimeout(() => conf.remove(), 2300);
+                    }
+                }, col * 60);
+            }
+        }
+
         function updateCounter() {
             counterDiv.textContent = `Cerditos atrapados: ${piggyCount}`;
+            if (piggyCount >= 25 && !confettiShown) {
+                confettiShown = true;
+                showConfetti();
+            }
         }
         function piggyRain() {
             counterDiv.style.display = 'block';
@@ -232,6 +266,11 @@
                     piggy.onclick = function() {
                         piggyCount++;
                         updateCounter();
+                        // Reproducir sonido al atrapar cerdito
+                        try {
+                            piggySound.currentTime = 0;
+                            piggySound.play();
+                        } catch(e) {}
                         piggy.remove();
                     };
                     piggy.addEventListener('animationend', () => piggy.remove());
@@ -302,5 +341,6 @@
             document.body.appendChild(closeButton);
         });
     </script>
+    <div>
 </body>
 </html>
