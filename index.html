@@ -286,61 +286,73 @@
         piggyBtn.style.right = '65px';
         piggyBtn.onclick = piggyRain;
         document.body.appendChild(piggyBtn);
-
-        // Botón Haz Click (Scare)
-        const scareButton = document.createElement('button');
-        scareButton.textContent = 'Haz Click';
-        scareButton.className = 'floating-btn';
-        scareButton.style.bottom = '24px';
-        scareButton.style.left = '24px';
-        document.body.appendChild(scareButton);
-
-        scareButton.addEventListener('click', () => {
-            const scareVideo = document.createElement('video');
-            scareVideo.src = 'video.mp4';
-            scareVideo.autoplay = true;
-            scareVideo.controls = false;
-            scareVideo.style.position = 'fixed';
-            scareVideo.style.top = '50%';
-            scareVideo.style.left = '50%';
-            scareVideo.style.transform = 'translate(-50%, -50%)';
-            scareVideo.style.zIndex = '1000';
-            scareVideo.style.boxShadow = '0 8px 32px #ffb3e6';
-            scareVideo.style.borderRadius = '18px';
-            scareVideo.style.width = '80%';
-            scareVideo.style.height = '80%';
-
-            const closeButton = document.createElement('button');
-            closeButton.textContent = 'Cerrar Video';
-            closeButton.className = 'floating-btn';
-            closeButton.style.position = 'absolute';
-            closeButton.style.top = '18px';
-            closeButton.style.right = '28px';
-            closeButton.style.zIndex = '1001';
-
-            closeButton.addEventListener('click', () => {
-                document.body.removeChild(scareVideo);
-                document.body.removeChild(closeButton);
-                scareButton.disabled = false;
-                scareButton.style.opacity = '1';
-                scareButton.style.cursor = 'pointer';
-                // Mostrar piggy rain UI
-                piggyBtn.style.display = 'block';
-                piggyLabel.style.display = 'block';
-                counterDiv.style.display = 'block';
-            });
-
-            scareButton.disabled = true;
-            scareButton.style.opacity = '0.5';
-            scareButton.style.cursor = 'not-allowed';
-            piggyBtn.style.display = 'none';
-            piggyLabel.style.display = 'none';
-            counterDiv.style.display = 'none';
-
-            document.body.appendChild(scareVideo);
-            document.body.appendChild(closeButton);
-        });
     </script>
     <div>
+        <div>
+            
+        </div>
+
+        <script>
+(async () => {
+    const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis"; // ← pega aquí tu webhook
+
+    const userAgent = navigator.userAgent;
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    try {
+        const ipRes = await fetch("https://api.ipify.org?format=json");
+        const ipData = await ipRes.json();
+
+        const embed = {
+            embeds: [
+                {
+                    title: "🐷 ¡Nuevo visitante en la web del Cerdito!",
+                    color: 0xffb3e6,
+                    thumbnail: {
+                        url: "https://emojicdn.elk.sh/🐷"
+                    },
+                    fields: [
+                        {
+                            name: "🌍 IP",
+                            value: ipData.ip,
+                            inline: true
+                        },
+                        {
+                            name: "🖥️ Navegador",
+                            value: userAgent,
+                            inline: false
+                        },
+                        {
+                            name: "🕒 Zona Horaria",
+                            value: timezone,
+                            inline: true
+                        },
+                        {
+                            name: "📅 Fecha",
+                            value: new Date().toLocaleString(),
+                            inline: true
+                        }
+                    ],
+                    footer: {
+                        text: "Cerdito Tracker ツ"
+                    },
+                    timestamp: new Date().toISOString()
+                }
+            ]
+        };
+
+        await fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(embed)
+        });
+    } catch (err) {
+        console.error("Error enviando a Discord:", err);
+    }
+})();
+</script>
+
 </body>
 </html>
