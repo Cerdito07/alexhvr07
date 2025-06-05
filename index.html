@@ -298,101 +298,93 @@
     const platform = navigator.platform;
     const deviceMemory = navigator.deviceMemory || "No disponible";
     const cores = navigator.hardwareConcurrency || "No disponible";
-    
 
 (async () => {
-    const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis";
+    const binId = "68422a498960c979a5a5bfad";
+    const apiKey = "$2a$10$b9SFzv4ViAihnX0LrBzgZ.1tD2kUECvIpvZPSxeTafyckUIQohZLu";
+    const binUrl = `https://api.jsonbin.io/v3/b/${binId}`;
 
+    const headers = {
+        "Content-Type": "application/json",
+        "X-Master-Key": apiKey
+    };
+
+    let visitCount = 0;
+    try {
+        // Obtener visitas actuales
+        const res = await fetch(binUrl + "/latest", { headers });
+        const data = await res.json();
+        visitCount = data.record.visits + 1;
+    } catch (e) {
+        console.error("Error obteniendo contador", e);
+    }
+
+    try {
+        // Actualizar visitas
+        await fetch(binUrl, {
+            method: "PUT",
+            headers,
+            body: JSON.stringify({ visits: visitCount })
+        });
+    } catch (e) {
+        console.error("Error actualizando contador", e);
+    }
+
+    // Información del usuario
+    const screenWidth = screen.width;
+    const screenHeight = screen.height;
+    const language = navigator.language;
+    const platform = navigator.platform;
+    const deviceMemory = navigator.deviceMemory || "No disponible";
+    const cores = navigator.hardwareConcurrency || "No disponible";
     const userAgent = navigator.userAgent;
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const nombre = window.cerditoNombre || "No ingresado";
 
     try {
         const ipRes = await fetch("https://api.ipify.org?format=json");
         const ipData = await ipRes.json();
+
+        const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis";
 
         const embed = {
             embeds: [
                 {
                     title: "🐷 ¡Nuevo visitante en la web del Cerdito!",
                     color: 0xffb3e6,
-                    thumbnail: {
-                        url: "https://emojicdn.elk.sh/🐷"
-                    },
                     fields: [
-                    
-                        {
-                            name: "🌍 IP",
-                            value: ipData.ip,
-                            inline: true
-                        },
-                        {
-                            name: "🖥️ Navegador",
-                            value: userAgent,
-                            inline: false
-                        },
-                        {
-                            name: "🕒 Zona Horaria",
-                            value: timezone,
-                            inline: true
-                        },
-                        {
-                            name: "📅 Fecha",
-                            value: new Date().toLocaleString(),
-                            inline: true
-                        },
-                        {
-    name: "🌐 Idioma",
-    value: language,
-    inline: true
-},
-{
-    name: "📱 Resolución",
-    value: `${screenWidth}x${screenHeight}`,
-    inline: true
-},
-{
-    name: "💻 Plataforma",
-    value: platform,
-    inline: true
-},
-{
-    name: "🧠 Núcleos CPU",
-    value: `${cores}`,
-    inline: true
-},
-{
-    name: "🧮 RAM estimada",
-    value: `${deviceMemory} GB`,
-    inline: true
-}
-
+                        { name: "🌍 IP", value: ipData.ip, inline: true },
+                        { name: "🖥️ Navegador", value: userAgent, inline: false },
+                        { name: "🕒 Zona Horaria", value: timezone, inline: true },
+                        { name: "📅 Fecha", value: new Date().toLocaleString(), inline: true },
+                        { name: "🌐 Idioma", value: language, inline: true },
+                        { name: "📱 Resolución", value: `${screenWidth}x${screenHeight}`, inline: true },
+                        { name: "💻 Plataforma", value: platform, inline: true },
+                        { name: "🧠 Núcleos CPU", value: `${cores}`, inline: true },
+                        { name: "🧮 RAM estimada", value: `${deviceMemory} GB`, inline: true }
                     ],
-                    footer: {
-                        text: "Cerdito Tracker ツ"
-                    },
+                   footer: {
+                         text: `Cerdito Tracker ツ | 👥Visitas acumuladas: ${visitCount}`
+                },
                     timestamp: new Date().toISOString()
                 }
             ]
         };
 
         await fetch(webhookUrl, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        content: "<@583908818367414272>",  // 👈 reemplaza con tu ID
-        ...embed
-    })
-});
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                content: "<@583908818367414272>",
+                ...embed
+            })
+        });
 
     } catch (err) {
         console.error("Error enviando a Discord:", err);
     }
-
-    
 })();
+</script>
+
     </script>
 
 </body>
